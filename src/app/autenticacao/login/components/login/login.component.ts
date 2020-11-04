@@ -42,16 +42,17 @@ export class LoginComponent implements OnInit {
     this.loginService.logar(login)
       .subscribe(
         data => {
-          localStorage['token'] = data['token'];
+          
+          localStorage['token'] = data['data']['token'];
 
           const usuarioData = JSON.parse(
             atob(data['data']['token'].split('.')[1]));
           if (usuarioData['role'] == 'ROLE_ADMIN') {
-            alert('Deve redirecionar para a página de admin');
-            //this.router.navigate(['/admin']);
+            //alert('Deve redirecionar para a página de admin');
+            this.router.navigate(['/admin']);
           } else {
-            alert('Deve redirecionar para a página de funcion')
-            //this.router.navigate(['/funcionario']);
+            //alert('Deve redirecionar para a página de funcion')
+            this.router.navigate(['/funcionario']);
           }
         },
         err => {
