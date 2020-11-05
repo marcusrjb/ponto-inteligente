@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     this.loginService.logar(login)
       .subscribe(
         data => {
-          
+          console.log("Teste Data.");
           localStorage['token'] = data['data']['token'];
 
           const usuarioData = JSON.parse(
@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
           }
         },
         err => {
+          console.log(JSON.stringify(err));
           let msg: string = "Tente novamente em instantes.";
           if (err['status'] == 401) {
             msg = "Email/senha inválido(s)."
