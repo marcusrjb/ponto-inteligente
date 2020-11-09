@@ -43,13 +43,13 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           console.log("Teste Data.");
-          //localStorage['token'] = data['data']['token'];
-          localStorage['token'] = data['token'];
+          localStorage['token'] = data['data']['token'];
+          //localStorage['token'] = data['token'];
 
-          /*const usuarioData = JSON.parse(
-            atob(data['data']['token'].split('.')[1]));*/
           const usuarioData = JSON.parse(
-            atob(data['token'].split('.')[1]));
+            atob(data['data']['token'].split('.')[1]));
+          /*const usuarioData = JSON.parse(
+            atob(data['token'].split('.')[1]));*/
           if (usuarioData['role'] == 'ROLE_ADMIN') {
             //alert('Deve redirecionar para a página de admin');
             this.router.navigate(['/admin']);
